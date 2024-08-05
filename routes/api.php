@@ -1,18 +1,24 @@
 <?php
 
-
-
+use App\Http\Controllers\DepartamentoController;
+use App\Http\Controllers\FuncionarioController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostoController;
 
-// Rota para criar um novo posto
-Route::post('/criar/posto', [PostoController::class, 'criarPosto']);
+Route::post('posto/criar/', [PostoController::class, 'criarPosto']);
+Route::get('posto/retornar/', [PostoController::class, 'retornarTodos']);
+Route::put('/posto/atualizar/{posto}', [PostoController::class, 'atualizarPosto']);
+Route::delete('/posto/excluir/{posto}', [PostoController::class, 'excluirPosto']);
 
-// Rota para retornar todos os postos
-Route::get('/retornar/posto', [PostoController::class, 'retornarTodos']);
+Route::post('departamento/cadastrar', [DepartamentoController::class, 'criarDepartamento']);
+Route::get('departamento/todos', [DepartamentoController::class, 'listarDepartamentos']);
+Route::get('departamento/encontrar/{id}', [DepartamentoController::class, 'buscarPorId']);
+Route::put('departamento/atualizar/{id}', [DepartamentoController::class, 'atualizarDepartamento']);
 
-// Rota para atualizar um posto existente
-Route::put('/postos/{posto}', [PostoController::class, 'atualizarPosto']);
+Route::post('/funcionarios/criar', [FuncionarioController::class, 'criarFuncionario']);
+Route::get('/funcionarios/all', [FuncionarioController::class, 'listarTodos']);
+Route::get('/funcionarios/pesquisar/{id}', [FuncionarioController::class, 'pesquisarPorId']);
+Route::put('/funcionarios/atualizar/{id}', [FuncionarioController::class, 'atualizarFuncionario']);
+Route::delete('/funcionarios/excluir/{id}', [FuncionarioController::class, 'excluirFuncionario']);
 
-// Rota para excluir um posto existente
-Route::delete('/postos/{posto}', [PostoController::class, 'excluirPosto']);
+
