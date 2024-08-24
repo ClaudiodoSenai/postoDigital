@@ -5,20 +5,21 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Posto extends Model
+class Paciente extends Model
 {
     use HasFactory;
-
     protected $fillable = [
         'nome',
-        'horarioFuncionamento',
-        'diaFuncionamento',
-        'servicos',
-        'cep',
-        'estado',
+        'cpf',
+        'email',
         'rua',
         'numero',
-        'latitude',
+        'estado',
+        'cep',
+        'celular',
+        'senha',
+        'id_postos',
+         'latitude',
         'longitude'
     ];
 }

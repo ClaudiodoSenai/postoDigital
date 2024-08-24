@@ -11,19 +11,24 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('postos', function (Blueprint $table) {
+        Schema::create('pacientes', function (Blueprint $table) {
             $table->id();
-            $table->string('nome')->nullable(false); 
+            $table->string('nome');
+            $table->string('cpf')->unique(); 
+            $table->string('email')->unique(); 
+            $table->string('rua');
+            $table->string('numero');
+            $table->string('estado');
+            $table->string('celular');
+            $table->string('senha'); 
             $table->string('cep')->nullable(); 
-            $table->string('estado')->nullable(); 
-            $table->string('rua')->nullable();
-            $table->integer('numero')->nullable(); 
             $table->decimal('latitude', 9, 6)->nullable(); 
             $table->decimal('longitude', 9, 6)->nullable(); 
-            $table->string('horarioFuncionamento')->nullable(false); 
-            $table->string('diaFuncionamento')->nullable(false); 
-            $table->text('servicos')->nullable(false);
+            $table->unsignedBigInteger('id_postos')->nullable(); 
             $table->timestamps();
+
+            $table->foreign('id_postos')->references('id')->on('postos');
+
         });
     }
 
@@ -32,6 +37,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('postos');
+        Schema::dropIfExists('pacientes');
     }
 };

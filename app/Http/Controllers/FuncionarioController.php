@@ -53,13 +53,40 @@
         public function atualizarFuncionario(FuncionarioUpdateFormRequest $request)
         {
             $funcionario = Funcionario::find($request->id);
-            if (!$funcionario) {
+    
+            if (!isset($funcionario)) {
                 return response()->json([
                     'status' => false,
                     'message' => "Funcionário não encontrado"
                 ]);
             }
-            $funcionario->update($request->all());
+    
+            if (isset($request->nome)) {
+                $funcionario->nome = $request->nome;
+            }
+    
+            if (isset($request->celular)) {
+                $funcionario->celular = $request->celular;
+            }
+    
+            if (isset($request->cpf)) {
+                $funcionario->cpf = $request->cpf;
+            }
+    
+            if (isset($request->numeroRegistro)) {
+                $funcionario->numeroRegistro = $request->numeroRegistro;
+            }
+    
+            if (isset($request->id_departamento)) {
+                $funcionario->id_departamento = $request->id_departamento;
+            }
+    
+            if (isset($request->senha)) {
+                $funcionario->senha = Hash::make($request->senha);
+            }
+    
+            $funcionario->update();
+    
             return response()->json([
                 'status' => true,
                 'message' => "Funcionário atualizado com sucesso",
